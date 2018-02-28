@@ -25,10 +25,10 @@ export class LoginComponent {
                
 	           this._http.postName(this.username)
                 .subscribe(data => {if((JSON.stringify(data["token"]))!=null)
-                                        this.token = (JSON.stringify(data["token"]));
+                                        this.token = (JSON.stringify(data['token']));
                                         setTimeout(()=>{this._http.currentUser=this.token;
                                             console.log(this.token);
-                                        this._router.navigate(['/chat'])},2000);
+                                        this._router.navigate(['/chat'])},1000);
                                                               
                                    },
                            () =>console.log("It's done"));

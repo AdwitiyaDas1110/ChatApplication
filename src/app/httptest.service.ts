@@ -10,25 +10,23 @@ export class HttpService {
     private baseUrl: string;
     respond : any ;
     currentUser : string = "";
-    constructor(private _http : HttpClient, private http : Http){
+    constructor(private _httpClient : HttpClient, private _http : Http){
         this.baseUrl = "https://chat.promactinfo.com/api/";
     }
 
     postName(uName : string){
         let params  = {name:uName};
-        return this._http.post(this.baseUrl+"user/login",params);
+        return this._httpClient.post(this.baseUrl+"user/login",params);
 
     }
 
     getUsers(){
-        let header = new HttpHeaders();
-        header.set('Authorization', this.currentUser);
-       // let options = new RequestOptions({ headers: header, params : null });
-
-        return this._http.get('https://chat.promactinfo.com/api/user', 
-        {
-             headers : header
+        console.log(this.currentUser);
+        const httpOptions = new Headers({
+            'Content-Type' : 'application/json',
+            'Authorization' : JSON.parse(this.currentUser)
         });
-    
+        console.log(httpOptions);
+        return this._http.get(this.baseUrl+"user", { headers: httpOptions });
     }
 }

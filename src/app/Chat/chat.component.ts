@@ -11,14 +11,16 @@ export class ChatComponent implements OnInit{
     constructor(private _http : HttpService, private http : HttpClient){
 
     }
-    users : any[];
+    users : any;
     ngOnInit(){
         console.log(this._http.currentUser);
         this._http.getUsers()
-        .subscribe(data => console.log(JSON.stringify(data)),
-                error => alert(error),
-                () =>console.log("It's done"));
+        .subscribe(data => this.users = (JSON.parse(JSON.stringify(data))),
+                error => alert(JSON.stringify(error)),
+                () => console.log("It's done"));
+        console.log(this.users);
     }
+
 }
 
            
