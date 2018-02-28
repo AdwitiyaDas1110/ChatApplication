@@ -4,16 +4,16 @@
                 <div class="logo">
                     <h3>Side Nav</h3>
                 </div>
-                <ul class="nav-link">
-                    <li class="active"><a href="">Links</a></li>
-                    <li><a href="">Links</a></li>
-                    <li><a href="">Links</a></li>
-                    <li><a href="">Links</a></li>
-                    <li><a href="">Links</a></li>
-                    <li><a href="">Links</a></li>
-                    <li><a href="">Links</a></li>
-                    <li><a href="">Links</a></li>
-                </ul>
+                 <div class = "form-group">
+                       <ul class = "nav-link" name = "users" [(ngModel)] = "users" ngDefaultControl>
+                            <li *ngFor = "let u of users" style = "color : white">
+                                <a *ngIf = "u.id != userID"  href = "" style = "text-decoration : none">{{u.name}}</a>
+                            </li>
+                        </ul>
+                        
+                </div>
+
+             
             </div>
         </div>
 
