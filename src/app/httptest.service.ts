@@ -29,6 +29,8 @@ export class HttpService {
             'Authorization' : JSON.parse(this.currentUserToken)
         });
         console.log(httpOptions);
-        return this._http.get(this.baseUrl+"user", { headers: httpOptions }).map((res:Response) => res.json());
+      
+
+       return this._http.get(this.baseUrl+"user", { headers: httpOptions }).map((res:Response) => res.json());
     }
 }

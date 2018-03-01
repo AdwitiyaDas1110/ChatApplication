@@ -15,7 +15,7 @@ export class LoginComponent {
     constructor(private _http : HttpService , private _router : Router, private http : HttpClient ){
 
     }
-    SubmitUsername() {
+    async SubmitUsername() {
         
         var regSpace = new RegExp("[\s]");
         if(this.username != ""){
@@ -23,14 +23,12 @@ export class LoginComponent {
             if(!regSpace.test(this.username)){
                
                
-	           this._http.postName(this.username)
+	           await this._http.postName(this.username)
                 .subscribe(data => {if((JSON.stringify(data["token"]))!=null)
                                         this.token = (JSON.stringify(data['token']));
-                                        setTimeout(()=>{this._http.currentUserToken=this.token;
-                                                        this._http.currentUserId=JSON.parse(JSON.stringify(data['id']));
-                                                        // console.log(this.token);
-                                                        this._router.navigate(['/chat'])
-                                                    },1000);                  
+                                        this._http.currentUserToken=this.token;
+                                        this._http.currentUserId=JSON.parse(JSON.stringify(data['id']));
+                                        this._router.navigate(['/chat'])                  
                                    },
                            () =>console.log("It's done"));
                

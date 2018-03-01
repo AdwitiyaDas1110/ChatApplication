@@ -26,7 +26,7 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    RouterModule.forRoot(rootRouterConfig, { useHash: true })
+    RouterModule.forRoot(rootRouterConfig)//, { useHash: true })
 
   ],
   providers: [HttpService],

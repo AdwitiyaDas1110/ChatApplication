@@ -13,21 +13,15 @@ export class ChatComponent implements OnInit{
     }
     users : Array<any> = [];
     userID : number = 0;
-    ngOnInit(){
+    
+    
+    async ngOnInit(){
         this.userID = this._http.currentUserId;
-        this._http.getUsers()
-        .subscribe(data => {
-                                setTimeout(() => {
-                                     this.users = JSON.parse(JSON.stringify(data));
-                                    //  for (var index = 0; index < this.users.length; index++) {
-                                    //      var element = this.users[index];
-                                         // console.log(this.userID);
-                                    //  }
-                              },100);
-                           },
-                error => alert(JSON.stringify(error)),
-                () => console.log("It's done"));
         
+    await this._http.getUsers()
+        .subscribe(data => this.users = JSON.parse(JSON.stringify(data)),
+                   error => alert(JSON.stringify(error)),
+                   () => console.log("It's done"));   
     }
 
 }
